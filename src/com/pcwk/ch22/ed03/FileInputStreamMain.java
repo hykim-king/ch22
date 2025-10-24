@@ -1,10 +1,3 @@
-/**
- * 파일명: FileInputStreamMain.java
- * 설명:
- * 작성자: user
- * 작성일: 2025-10-24
- * 버전 : 1.0
- */
 package com.pcwk.ch22.ed03;
 
 import java.io.FileInputStream;
@@ -14,27 +7,34 @@ import java.io.InputStream;
 
 public class FileInputStreamMain {
 
-	public static void main(String[] args) {
-		// D:\ACON_20250916\01_JAVA\workspace\ch22\byte_data.txt
-		String filePath = "D:\\ACON_20250916\\01_JAVA\\workspace\\ch22\\byte_data.txt";
+    public static void main(String[] args) {
 
-		try (InputStream fis = new FileInputStream(filePath);) {
+        String filePath = "D:\\ACON_20250916\\01_JAVA\\workspace\\ch22\\byte.data.text";
 
-			int data;
-			// 입력 스트림에서 1바이트를 읽고, 스트림에 끝에 도달하면 -1 반환.
-			while ((data = fis.read()) != -1) {
-				System.out.print((char) data);
-			}
+        // ✅ try-with-resources 구문: 자동으로 close() 호출됨
+        try (InputStream fis = new FileInputStream(filePath)) {
 
-		} catch (FileNotFoundException e) {
-			System.out.println("FileNotFoundException:" + e.getMessage());
-		} catch (IOException e) {
-			System.out.println("IOException:" + e.getMessage());
-		} catch (Exception e) {
-			System.out.println("Exception:" + e.getMessage());
-		}
+            int data;
+            while ((data = fis.read()) != -1) {
+                System.out.print((char) data);
+            }
 
-		System.out.println("프로그램 종료!");
-	}
+        } catch (FileNotFoundException e) {  // ✅ 파일을 찾지 못했을 때
+            System.out.println("FileNotFoundException: " + e.getMessage());
+        } catch (IOException e) {            // ✅ 입출력 중 에러 발생 시
+            System.out.println("IOException: " + e.getMessage());
+        } catch (Exception e) {              // ✅ 기타 모든 예외
+            System.out.println("Exception: " + e.getMessage());
+        }
 
+        System.out.println("프로그램 종료");
+    }
 }
+
+/*
+ * byte[] buffer = new byte[100]; int byteRead; while((byteRead =
+ * fis.read(buffer)) != -1){ System.out.println(new String(buffer,0,byreRead));
+ * }
+ * 
+ * 
+ */
