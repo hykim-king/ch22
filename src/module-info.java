@@ -1,6 +1,12 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
 module ch22 {
-	requires com.google.gson;
+	//이 모듈이 의존하는 다른 모듈을 명시
+	requires org.apache.logging.log4j;
 	
-	//프로젝트가 의존하는 필수 모듈
-	requires org.apache.logging.log4j;		
+
 }
